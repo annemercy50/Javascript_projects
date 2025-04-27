@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Calculator</title>
+</head>
+
+<body>
+
+    <h2>Simple Calculator</h2>
+
+    <input type="text" id="display" readonly style="width: 160px; font-size: 20px;">
+    <!-- An input box where the numbers and results are shown
+         "readonly" means the user can't type manually, only click buttons -->
+    <br><br>
+    <div>
+        <!-- Each button shows a number.
+             When you click, it calls the function appendNumber with that number. -->
+
+        <button onclick="appendNumber(1)">1</button>
+        <button onclick="appendNumber(2)">2</button>
+        <button onclick="appendNumber(3)">3</button><br>
+
+        <button onclick="appendNumber(4)">4</button>
+        <button onclick="appendNumber(5)">5</button>
+        <button onclick="appendNumber(6)">6</button><br>
+
+        <button onclick="appendNumber(7)">7</button>
+        <button onclick="appendNumber(8)">8</button>
+        <button onclick="appendNumber(9)">9</button><br>
+    </div><br>
+    <div>
+
+        <!-- Buttons for operators.
+             When clicked, it calls setOperation() with the operator (+, -, *, /). -->
+
+        <button onclick="setOperation('+')">+</button>
+        <button onclick="setOperation('-')">-</button>
+        <button onclick="setOperation('*')">*</button>
+        <button onclick="setOperation('/')">/</button><br><br>
+
+        <!-- Button to calculate the result -->
+        <button onclick="calculate()">=</button>
+
+        <!-- Button to clear everything -->
+        <button onclick="clearDisplay()">C</button>
+    </div>
+
+    <script>
+        // These 3 variables store the numbers and the operator
+        let firstNumber = '';
+        let operator = '';
+        let secondNumber = '';
+
+        // Function to add a number to the display
+        function appendNumber(num) {
+            const display = document.getElementById('display'); // Get the display input
+
+            if (operator === '') {
+                // If operator is not chosen yet, we are entering the first number
+                firstNumber += num; // Add the clicked number to firstNumber
+                display.value = firstNumber; // Show it in the display
+            } else {
+                // If operator IS chosen, we are now entering the second number
+                secondNumber += num; // Add the clicked number to secondNumber
+                display.value = secondNumber; // Show secondNumber in the display
+            }
+        }
+
+        // Function to set the operator (+, -, *, /)
+        function setOperation(op) {
+            if (firstNumber !== '') {
+                // Only set the operator if the first number is already entered
+                operator = op;
+            }
+        }
+
+        // Function to perform the calculation when "=" is clicked
+        function calculate() {
+            let result; // Will store the final result
+
+            // Convert the stored strings into real numbers
+            const num1 = parseFloat(firstNumber);
+            const num2 = parseFloat(secondNumber);
+
+            // Check if numbers are valid
+            if (isNaN(num1) || isNaN(num2)) {
+                result = 'Error'; // If not, show error
+            } else {
+                // Do the calculation based on which operator was clicked
+                switch (operator) {
+                    case '+':
+                        result = num1 + num2;
+                        break;
+                    case '-':
+                        result = num1 - num2;
+                        break;
+                    case '*':
+                        result = num1 * num2;
+                        break;
+                    case '/':
+                        result = num1 / num2;
+                        break;
+                    default:
+                        console.error('Invalid operator'); // Log error if operator is wrong
+                }
+            }
+
+            // Show the result in the display
+            document.getElementById('display').value = result;
+
+            // Reset the variables for next calculation
+            firstNumber = result.toString(); // Start with result if user wants to continue calculating
+            operator = ''; // Clear operator
+            secondNumber = ''; // Clear second number
+        }
+
+        // Function to clear everything and start fresh
+        function clearDisplay() {
+            firstNumber = '';
+            operator = '';
+            secondNumber = '';
+            document.getElementById('display').value = ''; // Clear the display
+        }
+
+    </script>
+
+</body>
+
+</html>
