@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Cart quantity</title>
+  </head>
+
+  <body>
+    <p> Cart Quantity</p>
+
+    <button onclick="
+      console.log(`Cart quantity: ${cartQuanty}`);
+    ">Show Quantity</button>
+
+    <button onclick="
+    if (cartQuanty +1 > 10) {
+    alert('The cart quantity is full')
+    } else {
+     cartQuanty++;
+     console.log(`cart quantity: ${cartQuanty}`);
+    }
+     ">Add to Cart</button>
+
+    <button onclick="
+    cartQuanty += 2;
+    console.log(` cart quantity: ${cartQuanty}`);
+    ">+2</button>
+
+    <button onclick="
+    cartQuanty =+ 3;
+    console.log(`cart quantity: ${cartQuanty}`)
+    ">+3</button>
+
+    <button onclick="
+    cartQuanty = 0;
+    console.log(`cart was reset`);
+    console.log(`cart quantity: ${cartQuanty}`)">Reset Cart</button>
+
+
+    <script>
+      let cartQuanty = 0; 
+    </script>
+  </body>
+
+
+
+</html>
+

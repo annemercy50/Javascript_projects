@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>function exercise</title>
+  </head>
+  <body>
+    <script>
+  function greet(name){
+      if (!name){
+        console.log('Hey there!')
+      } else
+        console.log(`Hello ${name}!`);
+      }
+    greet('Mercy');
+    greet('Peace');
+    greet('Simon');
+    greet();
+
+  function convertToFahrenheit(celcius){
+      console.log((celcius * 9 / 5) + 32)
+    }
+
+    convertToFahrenheit(25);
+
+  function convertToCelcius(fahreheit){
+      console.log((fahreheit - 32) * 5 / 9)
+    }
+
+    convertToCelcius(86)
+
+
+function convertToFahrenheit(celcius){
+      return(celcius * 9 / 5) + 32;
+    }
+    console.log(convertToFahrenheit(25));
+  
+function convertToCelcius(fahreheit){
+  return(fahreheit - 32) * 5 / 9;
+}
+console.log(convertToCelcius(86))
+
+
+
+
+ 
+    </script>
+  </body>
+</html>
